@@ -1,0 +1,4 @@
+/healthcheck:
+  $ref: './healthcheck/index.yml'
+/user:
+  $ref: './user/index.yml'

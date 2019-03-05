@@ -1,0 +1,20 @@
+swagger init spec \
+  --title "Checklists" \
+  --description "Online Checklists" \
+  --version 0.0.1 \
+  --scheme http \
+  --consumes application/json \
+  --produces application/json
+
+## In root.yml
+#securityDefinitions:
+#  APIKeyHeader:
+#     type: apiKey
+#     in: header
+#     name: X-API-Key
+
+## Paths:
+#/healthcheck:
+#  $ref: ./healthcheck/index.yml
+#/email:
+#  $ref: ./email/index.yml
