@@ -1,15 +1,18 @@
-#!/bin/bash
+#!/bin/bash -l
 
-set swagger='docker run --rm -it -e GOPATH=/Users/marc/src/go/playing_with_go:/Users/marc/go:/go -v /Users/marc:/Users/marc -w /Users/marc/Documents/src/go/playing_with_go/src/github.com/mkandel/checklists_swagger/spec quay.io/goswagger/swagger'
+shopt -s expand_aliases
+. ~/.bash_profile
 set -e
 
 rm -rf swagger.json
 json-refs resolve -f --filter relative ./spec/root.yml >> swagger.json
 rm -rf restapi/
 rm -rf models/
+rm -rf cmd/
 swagger generate server -A checklists -f swagger.json --model-package=models
 
 ./scripts/copy_post_code_gen.sh
 
 rm -rf client/
 swagger generate client -f swagger.json -A checklists
+#go get -u -f ./...

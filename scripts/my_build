@@ -1,0 +1,9 @@
+rm -rf swagger.json swagger.yml restapi/ models/ cmd/
+json-refs resolve -f --filter relative ./spec/root.yml > swagger.json
+json-refs resolve -y -f --filter relative ./spec/root.yml > swagger.yml
+. ~/.bash_profile; swagger generate server -A checklists -f swagger.json --model-package=models
+
+./scripts/copy_post_code_gen.sh
+
+rm -rf client/
+. ~/.bash_profile; swagger generate client -f swagger.json -A checklists
